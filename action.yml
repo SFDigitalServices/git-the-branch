@@ -1,0 +1,34 @@
+name: Git the branch
+description: |
+  Lots of actions and other tools aren't able to infer the
+  right git branch name when triggered from GitHub events
+  that don't set GITHUB_REF. This action attempts to
+  determine the branch using `git name-rev`, and sets
+  GITHUB_REF for subsequent actions, along with the
+  "branch" and "ref" outputs.
+
+branding:
+  icon: branch
+  color: black
+
+inputs:
+  checkout:
+    description: If true, this action will run `git checkout` on the branch.
+    default: false
+
+outputs:
+  ref:
+    description: The git ref, i.e. 'refs/heads/{branch}'.
+  branch:
+    description: The branch name without the 'remotes/origin/' prefix.
+
+runs:
+  using: composite
+  steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: git the branch
+      run: $GITHUB_ACTION_PATH/main.sh
+      shell: bash
