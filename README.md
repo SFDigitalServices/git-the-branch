@@ -1,6 +1,27 @@
-# Your repo title here
+# Get the branch in GitHub Actions
 
-This is a repo template for SF Digital Services. Here's what it does:
+If you've used Actions for long enough, you've probably run into issues with
+certain workflows, actions, or other tools not knowing which branch you're "on"
+in the context of certain events. This action attempts to solve this problem.
+Here's how:
 
-1. The default branch is `main`, not `master`.
-2. The [MIT license](LICENSE) is included by default.
+```yml
+on:
+  - deployment_status
+  # - or any other action that isn't "push" or "pull_request"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      # check out your git repo
+      - uses: actions/checkout@v2
+
+      - uses: SFDigitalServices/git-the-branch@main
+        id: git-branch
+
+      - run: |
+          echo "GITHUB_REF: '$GITHUB_REF'"
+          echo "steps.git-branch.outputs.branch: '${{ steps.git-branch.outputs.branch }}'"
+```
