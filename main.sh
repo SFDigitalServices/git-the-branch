@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "fetching branches..."
+git fetch
+
 NAME_REV=$(git name-rev --name-only "$GITHUB_SHA")
 REF_BRANCH=${NAME_REV/remotes\/origin\//}
 
