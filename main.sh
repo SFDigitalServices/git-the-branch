@@ -13,10 +13,10 @@ echo "::set-output name=branch::$REF_BRANCH"
 echo "::set-output name=ref::refs/heads/$REF_BRANCH"
 echo "::set-env name=GITHUB_REF::refs/heads/$REF_BRANCH"
 
-checkout="${INPUT_CHECKOUT:-false}"
-if [[ "$checkout" = '1' || "$checkout" = 'true' ]]; then
+checkout="${INPUT_CHECKOUT:-'false'}"
+if [[ "$checkout" = "true" ]]; then
   echo "checking out '$REF_BRANCH'...'"
   git checkout "$REF_BRANCH"
 else
-  echo "not checking out REF_BRANCH (INPUT_CHECKOUT: '$INPUT_CHECKOUT')"
+  echo "not checking out REF_BRANCH (checkout: '$checkout')"
 fi
