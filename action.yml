@@ -25,10 +25,5 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: git the branch
-      run: $GITHUB_ACTION_PATH/main.sh
+    - run: $GITHUB_ACTION_PATH/main.sh
       shell: bash
