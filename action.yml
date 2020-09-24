@@ -18,7 +18,5 @@ outputs:
     description: The branch name without the 'remotes/origin/' prefix.
 
 runs:
-  using: composite
-  steps:
-    - run: $GITHUB_ACTION_PATH/main.sh
-      shell: bash
+  using: node12
+  main: main.js
