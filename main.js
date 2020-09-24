@@ -4,7 +4,7 @@ const { spawnSync } = require('child_process')
 const git = (cmd, args = [], opts = {}) => {
   return spawnSync('git', [cmd, ...args], {
     stdio: 'inherit',
-    encoding: 'utf8'
+    encoding: 'utf8',
     ...opts
   }).stdout.trim()
 }
