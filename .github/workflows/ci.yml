@@ -8,4 +8,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - name: lint
-        runs: npx standard main.js
+        run: npx standard main.js
