@@ -11,6 +11,11 @@ branding:
   icon: branch
   color: black
 
+inputs:
+  checkout:
+    description: |
+      If true, run git checkout on the branch.
+
 outputs:
   ref:
     description: The git ref, i.e. 'refs/heads/{branch}'.
@@ -18,7 +23,5 @@ outputs:
     description: The branch name without the 'remotes/origin/' prefix.
 
 runs:
-  using: composite
-  steps:
-    - run: $GITHUB_ACTION_PATH/main.sh
-      shell: bash
+  using: node12
+  main: main.js
