@@ -11,11 +11,6 @@ branding:
   icon: branch
   color: black
 
-inputs:
-  checkout:
-    description: If true, this action will run `git checkout` on the branch.
-    default: false
-
 outputs:
   ref:
     description: The git ref, i.e. 'refs/heads/{branch}'.
