@@ -1,11 +1,10 @@
 const { getInput, exportVariable, setOutput } = require('@actions/core')
 const { spawnSync } = require('child_process')
 
-const git = (cmd, args = [], opts = {}) => {
+const git = (cmd, args = []) => {
   return spawnSync('git', [cmd, ...args], {
-    stdio: 'inherit',
+    stdio: ['ignore', 'pipe', 'inherit'],
     encoding: 'utf8',
-    ...opts
   }).stdout.trim()
 }
 
